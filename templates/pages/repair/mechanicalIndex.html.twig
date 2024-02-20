@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage V.Parrot - Réparations mécaniques
+{% endblock %}
+
+{% block body %}
+	<div class="css-dark">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+		<div id="mechanicalDiv" class="mb-5 ">
+			<h2 class="h1-gold mb-5">{{repairMechanicalTitle}}</h2>
+			<i class="fa-solid fa-arrow-right pe-2 mb-1 text-gold w-100 text-center">
+				<a href="{{ path('body.index') }}" class="goldHover">Allez vers les reparations de carosserie</a>
+			</i>
+		</div>
+
+		<div class="table-responsive px-0 px-md-5 mb-3">
+			<table class="table table-bordered table-hover">
+				<thead class="table-dark">
+					<tr>
+						<th class="col text-center fs-4 fw-bold">Réparations</th>
+						<th class="col text-center fs-4 fw-bold">Descriptions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for mechanical in repairMechanical %}
+						<tr>
+							<td class="col text-center align-middle p-3 fs-5">{{ mechanical.title }}</td>
+							<td class="col text-center align-middle p-3 fs-5">{{ mechanical.repairDescription }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<div class="text-start fs-4 text-center mb-3">{{ repairMechanicalEndText }}
+			<a class="goldHover" href="{{ path('contact.form') }}">
+				{{ linkHere }}
+			</a>
+		</div>
+	</div>
+{% endblock %}

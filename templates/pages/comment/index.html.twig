@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage V.Parrot - Modération commentaires
+{% endblock %}
+
+{% block body %}
+	<div class="css-dark p-0 d-flex flex-column align-items-center">
+		{% if is_granted('ROLE_ADMIN') %}
+			{% include "partials/_navigationAdmin.html.twig" %}
+		{% elseif is_granted('ROLE_USER') %}
+			{% include "partials/_navigationEmployee.html.twig" %}
+		{% endif %}
+		<h1 class="text-center h1-gold mt-5">Commentaires non validés</h1>
+		<div class="d-flex flex-column justify-content-center align-items-center commentBox mb-5">
+			{% for notValidComment in notValidComments %}
+				<div class="card cardComment d-flex flex-columns justify-content-around align-items-center">
+					<div class="fs-3 text-center">{{ notValidComment.name }}</div>
+					<div class="fs-5 my-5">{{ notValidComment.comment }}</div>
+					<div class="fs-5 text-center">
+						{% for i in range(1, 6) %}
+							{% if i <= notValidComment.rate %}
+								<i class="fas fa-star text-warning"></i>
+								<!-- Étoile pleine -->
+							{% else %}
+								<i class="far fa-star text-warning"></i>
+								<!-- Étoile vide -->
+							{% endif %}
+						{% endfor %}
+					</div>
+					<div class="d-flex flex-grow w-100">
+						<a href="#" class="btn btn-success fw-bold rounded-0 w-50" onclick="confirmDelete('{{ path('comment.isValid', {'id': notValidComment.id}) }}')">Valider</a>
+						<a href="#" class="btn btn-danger fw-bold rounded-0 w-50" onclick="confirmDelete('{{ path('comment.delete', {'id': notValidComment.id}) }}')">Supprimer</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+		<h1 class="text-center pt-5 h1-gold bt-gold">Commentaire Valide</h1>
+		<div class="d-flex flex-column justify-content-center align-items-center commentBox mb-5">
+			{% for validComment in validComments %}
+				<div class="card cardComment d-flex flex-columns justify-content-around align-items-center">
+					<div class="fs-3 text-center">{{ validComment.name }}</div>
+					<div class="fs-5 my-5">{{ validComment.comment }}</div>
+					<div class="fs-5 text-center">
+						{% for i in range(1, 6) %}
+							{% if i <= validComment.rate %}
+								<i class="fas fa-star text-warning"></i>
+								<!-- Étoile pleine -->
+							{% else %}
+								<i class="far fa-star text-warning"></i>
+								<!-- Étoile vide -->
+							{% endif %}
+						{% endfor %}
+					</div>
+					<div class="d-flex flex-grow justify-content-center w-100 ">
+						<a href="#" class="btn btn-danger fw-bold rounded-0 w-50" onclick="confirmDelete('{{ path('comment.delete', {'id': validComment.id}) }}')">Supprimer</a>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+
+
+	</div>
+{% endblock %}

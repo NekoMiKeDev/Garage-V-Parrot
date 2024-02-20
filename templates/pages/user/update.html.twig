@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Garage V.Parrot - Modificationd de compte
+{% endblock %}
+
+{% block body %}
+	{% include "partials/_navigationAdmin.html.twig" %}
+	<div class="css-dark d-flex flex-column align-items-center justify-content-center py-5">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+
+		{{ form_start(form, {'attr': {'class': 'd-flex flex-column p-3  h-100 col-12 col-xl-4 align-items-center b-gold rounded-4 text-center text-gold'}}) }}
+		{# Champ Email #}
+		<h1 class="h1-gold mb-3 w-100 pb-4 bb-gold">Modification de compte</h1>
+		<div class="mb-3 mt-4 w-100 fs-4">
+		    {{ form_label(form.email) }} 
+		    {{ form_widget(form.email) }}
+		    {{ form_errors(form.email) }}
+		</div>
+
+		{# Champ Mot de passe #}
+		<div class="mb-3 mt-4 w-100 fs-4">
+			{{ form_label(form.plainPassword.first) }}
+			{{ form_widget(form.plainPassword.first) }}
+			{{ form_errors(form.plainPassword.first) }}
+		</div>
+
+		{# Champ Confirmation du mot de passe #}
+		<div class="bb-gold pb-4 mb-4 mt-4 w-100 fs-4">
+			{{ form_label(form.plainPassword.second) }}
+			{{ form_widget(form.plainPassword.second) }}
+			{{ form_errors(form.plainPassword.second) }}
+		</div>
+		<div class="text-center">
+			{{ form_widget(form.submit, {'attr':{'class' : 'btn btn-gold'}}) }}
+		</div>
+		{{ form_end(form) }}
+
+	</div>
+{% endblock %}

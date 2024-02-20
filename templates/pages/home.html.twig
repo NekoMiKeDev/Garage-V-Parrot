@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	Garage V.Parrot-Accueil
+{% endblock %}
+
+{% block body %}
+	<div
+		class="css-dark">
+		{# || Section Welcome || #}
+		<div id="welcomeDiv" class="bb-gold mb-5">
+			<h1 class="pb-5 h1-gold">{{ welcomeTitle }}</h1>
+			<p class="fs-4 pb-5">{{ welcomeText }}</p>
+		</div>
+		{# || Section Repair || #}
+		<div id="repairDiv" class="bb-gold mb-5">
+			<h2 class="pb-5 h1-gold">{{repairTitle}}</h2>
+			<p class="fs-4">{{ repairText }}</p>
+			<div class="d-flex flex-grow justify-content-center py-5 linkRepairs ">
+				<div class="d-flex flex-column align-items-center h1-gold fs-3 me-4 text-center mb-5">{{ repairBodyLink }}
+					<a class="fs-4 goldHover" href="{{ path('body.index') }}">{{ link }}</a>
+				</div>
+				<div class="d-flex flex-column align-items-center h1-gold fs-3 ms-8 text-center">{{ repairMechanicalLink }}
+					<a class="fs-4 goldHover" href="{{ path('mechanical.index') }}">{{ link }}</a>
+				</div>
+			</div>
+		</div>
+		{# || Section Car || #}
+		<div id="carDiv" class="bb-gold pb-5 mb-5">
+			<h3 class="mb-5 h1-gold">{{ carTitle }}</h3>
+			<p class="fs-3 mb-5">{{carText }}</p>
+			<p class="fs-3 p-2 text-center">{{ carLink }}
+				<a class="fs-3 goldHover" href="{{ path('car.index') }}">{{ link }}</a>
+			</p>
+		</div>
+		{# || Section Comment || #}
+		<div id="commentDiv">
+			<h3 class="fs-1 h1-gold mb-5">{{ commentText }}</h3>
+			<div class="commentSpace d-flex justify-content-center bt-gold bb-gold bl-gold mb-5">
+				{% for commentValid in commentsValid %}
+					<div class="commentCard align-items-stretch">
+						<div class="bb-gold h-25">{{ commentValid.name }}</div>
+						<p class="text-start h-50 mb-5">{{ commentValid.comment }}</p>
+						<div class="fs-5 text-center">
+							{% for i in range(1, 6) %}
+								{% if i <= commentValid.rate %}
+									<i class="fas fa-star text-warning"></i>
+									<!-- Étoile pleine -->
+								{% else %}
+									<i class="far fa-star text-warning"></i>
+									<!-- Étoile vide -->
+								{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			<p class="fs-4 text-center">
+				{{ commentLink }}<a class="fs-5 goldHover" href="{{ path('comment.create') }}">{{ link }}</a>
+			</p>
+		</div>
+	</div>
+{% endblock %}

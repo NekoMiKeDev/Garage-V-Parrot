@@ -1,0 +1,124 @@
+<header class="bg-dark flex-column justify-content-around d-flex  css-header bb-gold bt-gold">
+	<div
+		class="h-25 bb-gold">
+		{# classic menu for full windows #}
+		<div class="d-md-flex justify-content-around align-items-center text-center d-none fs-4 py-3">
+			<a href="{{ path('home.index') }}" class="goldHover turbo-frame">Accueil</a>
+			<div class="dropdown text-white">
+				<div class="dropdown-toggle goldHover" id="repairsType" data-bs-toggle="dropdown" aria-expanded="false">
+					Nos réparations
+				</div>
+				<ul class="dropdown-menu bg-white" aria-labelledby="repairsType">
+					<li class="bb-gold">
+						<a class="dropdown-item border-bottom goldHover" href="{{ path('body.index') }}">Réparations carrosserie</a>
+					</li>
+					<li>
+						<a class="dropdown-item border-top goldHover" href="{{ path('mechanical.index') }}">Réprations mécanique</a>
+					</li>
+				</ul>
+			</div>
+			<a href="{{ path('car.index') }}" class="goldHover turbo-frame">Nos véhicules d'occasions</a>
+			<a href="{{ path('contact.form') }}" class="goldHover turbo-frame">Contact</a>
+		</div>
+		{# dropdown to min windows #}
+		<div class="dropdown d-flex d-md-none px-2">
+			<button class="dropdown-toggle rounded-2 p-1 fw-normal fs-6" type="button" id="userMenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+				<i class="fas fa-bars fs-5"></i>
+			</button>
+			<ul class="dropdown-menu bg-secondary" aria-labelledby="userMenu">
+				<li>
+					<a href="{{ path('home.index') }}" class="dropdown-item text-white fs-5 bb-gold turbo-frame">Accueil</a>
+				</li>
+				<li>
+					<a href="{{ path('body.index') }}" class="dropdown-item text-white fs-5 bb-gold turbo-frame">Réparations carrosserie</a>
+				</li>
+				<li>
+					<a href="{{ path('mechanical.index') }}" class="dropdown-item text-white fs-5 bb-gold turbo-frame">Réparations mécanique</a>
+				</li>
+				<li>
+					<a href="{{ path('car.index') }}" class="dropdown-item text-white fs-5 bb-gold turbo-frame">Nos véhicules d'occasions</a>
+				</li>
+				<li>
+					<a href="{{ path('contact.form') }}" class="dropdown-item text-white fs-5 turbo-frame">Contact</a>
+				</li>
+			</ul>
+
+			{# Phone and Mail to min windows #}
+			<div class="w-100 d-flex justify-content-around align-items-center">
+				<div>
+					<a href="mailto:garage.parrot@garage.fr" class="fw-bold goldHover">
+						<i class="fas fa-envelope py-1  me-2"></i>
+						garage.parrot@garage.fr</a>
+				</div>
+				<div class="py-3">
+					<a href="tel:+0388368478" class="fw-bold goldHover">
+						<i class="fas fa-phone py-1 me-2"></i>0388368478</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="h-100 d-flex justify-content-between align-items-center">
+
+		<div>
+			<a href="{{ path('home.index') }}" class="text-decoration-none text-white ps-3 turbo-frame">
+				<img src="{{ asset('images/logo.png') }}" alt="Logo du Garage V.Parrot" width="150" height="110">
+			</a>
+		</div>
+
+		<div class="d-flex w-75 h-100 justify-content-center flashMessage">
+			{% for message in app.flashes('success') %}
+				<div class="m-0 d-flex flex-column alert alert-success col-6 text-center justify-content-between rounded-2 fs-4 flashMessage">
+					<p class="">{{ message }}</p>
+				</div>
+			{% endfor %}
+			{% for message in app.flashes('miss') %}
+				<div class="m-0 d-flex flex-column alert alert-danger col-6 text-center justify-content-between rounded-2 fs-4 flashMessage">
+					<p class="">{{ message }}</p>
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="d-flex flex-column align-items-center text-center h-100 pe-2">
+			{% if app.user and 'ROLE_ADMIN' in app.user.roles %}
+				<div class="dropdown text-white">
+					<button class="dropdown-toggle btn-gold rounded-2 p-1 p-2 my-3 fw-normal fs-4" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+						connecté
+					</button>
+					<ul class="dropdown-menu bg-white text-center" aria-labelledby="userMenu">
+						<li class="bb-gold">
+							<div class="dropdown-item text-gold border-bottom goldHover bg-dark  fs-5">{{ app.user.email }}</div>
+						</li>
+						<li class="bb-gold">
+							<a class="dropdown-item text-dark border-bottom goldHover p-2 fs-4 turbo-frame" href="{{ path('admin.index') }}">Espace dédié</a>
+						</li>
+						<li>
+							<a class="dropdown-item text-dark border-top goldHover p-2 fs-4" href="{{ path('security.logout') }}">Déconnexion</a>
+						</li>
+					</ul>
+				</div>
+			{% elseif app.user %}
+				<div class="dropdown text-white">
+					<button class="dropdown-toggle btn-gold rounded-2 p-1 p-2 my-3 fw-normal bg-dark fs-4" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+						connecté
+					</button>
+					<ul class="dropdown-menu bg-white text-center" aria-labelledby="userMenu">
+						<li class="bb-gold">
+							<div class="dropdown-item text-gold border-bottom goldHover bg-dark p-1 fs-5">{{ app.user.email }}</div>
+						</li>
+						<li class="bb-gold">
+							<a class="dropdown-item text-dark border-bottom goldHover p-2 fs-4 turbo-frame" href="{{ path('employee.index') }}">Espace dédié</a>
+						</li>
+						<li>
+							<a class="dropdown-item text-dark border-top goldHover p-2 fs-4" href="{{ path('security.logout') }}">Déconnexion</a>
+						</li>
+					</ul>
+				</div>
+			{% else %}
+				<a href="{{ path('security.login') }}" class="text-decoration-none btn-gold  rounded-2 p-2 my-3 fw-normal fs-5 turbo-frame">Espace employés</a>
+			{% endif %}
+		</div>
+
+	</div>
+</header>

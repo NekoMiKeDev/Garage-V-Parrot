@@ -1,0 +1,347 @@
+body {
+    background-color: whitesmoke;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    min-height: 500px;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+/* WEBSITE */
+.css-dark {
+    width: 100%;
+    background-color: rgb(48, 47, 47);
+    color: white;
+    padding: 50px 50px;
+    min-width: 500px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.css-header {
+    min-height: 15vh;
+    min-width: 500px;
+}
+
+.css-footer {
+    min-height: 15vh;
+    min-width: 500px;
+}
+
+h1 {
+    border: 0;
+    margin: 0;
+    text-align: center;
+}
+
+h2 {
+    border: 0;
+    margin: 0;
+    text-align: center;
+}
+
+h3 {
+    border: 0;
+    margin: 0;
+    text-align: center;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.flashMessage {
+    min-width: 200px;
+}
+
+
+.dropdown-item:hover {
+    background-color: #a19d72;
+}
+
+
+.text-gold {
+    color: gold;
+}
+
+.h1-gold {
+    color: gold;
+    font-size: 3em;
+}
+
+.b-gold {
+    border: gold 2px solid;
+}
+
+.bt-gold {
+    border-top: gold 2px solid;
+}
+
+.br-gold {
+    border-right: gold 2px solid;
+}
+
+.bb-gold {
+    border-bottom: gold 2px solid;
+}
+
+.bl-gold {
+    border-left: gold 2px solid;
+}
+
+.btn-gold {
+    text-align: center;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: transparent;
+    border: 2px solid gold;
+    color: gold;
+    font-size: 1.3em;
+}
+
+.goldHover:hover
+{
+color: gold;
+}
+
+/* HomePage */
+
+.homeRepairImgs {
+    border: 10px groove goldenrod;
+    border-radius: 20px;
+}
+
+.commentSpace {
+    width: 100%;
+    max-height: 80vh;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    padding: 20px;
+    gap: 20px;
+}
+
+.commentSpace::-webkit-scrollbar {
+    width: 15px;
+}
+
+.commentSpace::-webkit-scrollbar-thumb {
+    background-color: rgb(230, 221, 170);
+    border-radius: 10px;
+}
+
+.commentSpace::-webkit-scrollbar-track {
+    background-color: goldenrod;
+}
+
+.commentCard {
+    min-width: 220px;
+    max-width: 380px;
+    padding: 10px;
+    border-radius: 15px;
+    border: #ffd700 3px solid;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.commentCard .h-25 {
+    margin-bottom: 10px;
+}
+
+.commentCard .h-50 {
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+/* Car*/
+
+.minWindowsWidth {
+    min-width: 380px;
+}
+
+
+/* Contact */
+
+
+/* Admin */
+/* Repairs */
+.min-h {
+    min-height: 140px;
+}
+
+/* Mechanical Repairs */
+/* Body Repairs */
+
+/* Car*/
+
+/* Responsive */
+.table-responsive {
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
+.css-header {
+    min-height: 15vh;
+    min-width: 500px;
+}
+
+.text-gold {
+    color: gold;
+}
+
+/*SECTION CSS CAR*/
+
+#display-car {
+    display: flex;
+    flex-wrap: wrap;
+    /* Ajout de cette ligne pour permettre l'enroulement des éléments enfants */
+}
+.min-height-nav
+{
+    height: 100%;
+    min-width: 500px;
+}
+.cardComment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px;
+    min-height: 300px;
+    max-width: 600px;
+    border: gold 4px solid;
+    border-radius: 20px;
+    min-height: 500px;
+    min-width: 100%;
+
+}
+
+.commentBox {
+    display: flex;
+    /* Utiliser un conteneur flex */
+    flex-wrap: wrap;
+    /* Permettre aux éléments enfants de passer à la ligne si nécessaire */
+    justify-content: space-between;
+    /* Distribuer l'espace disponible entre les éléments enfants */
+    align-items: stretch;
+    /* Étirer les éléments enfants pour qu'ils aient la même hauteur */
+}
+
+.commentSpace {
+    width: 100%;
+    max-height: 80vh;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    padding: 20px;
+    gap: 20px;
+    /* Espace entre les cartes */
+}
+
+.commentSpace::-webkit-scrollbar {
+    width: 15px;
+    /* Largeur de la barre de défilement */
+}
+
+.commentSpace::-webkit-scrollbar-thumb {
+    background-color: rgb(230, 221, 170);
+    /* Couleur de la poignée de la barre de défilement */
+    border-radius: 10px;
+    /* Bordure de la poignée de la barre de défilement */
+}
+
+.commentSpace::-webkit-scrollbar-track {
+    background-color: goldenrod;
+    /* Couleur de fond de la barre de défilement */
+}
+
+.contactTraitement {
+    border: solid 2px gold;
+    padding: 20px;
+    max-width: 70%;
+}
+
+.textSize {
+    min-height: 250px;
+}
+
+.table-responsive:-webkit-scrollbar {
+    width: 15px;
+    /* Largeur de la barre de défilement */
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background-color: rgb(230, 221, 170);
+    /* Couleur de la poignée de la barre de défilement */
+    border-radius: 10px;
+    /* Bordure de la poignée de la barre de défilement */
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background-color: goldenrod;
+    /* Couleur de fond de la barre de défilement */
+}
+
+.btn-back {
+    position: absolute;
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    font-size: 180%;
+    left: 10px;
+    /* Vous pouvez ajuster la valeur en fonction de vos besoins */
+    top: 10px;
+    /* Vous pouvez ajuster la valeur en fonction de vos besoins */
+}
+
+.btn-back:hover {
+    border: 1px solid gold;
+    color: gold;
+}
+
+.btn-gold:hover {
+    border: 3px solid goldenrod;
+    color: #daa520;
+}
+
+@media (max-width: 1250px) {
+    body {
+        padding: 0;
+        margin: 0;
+        min-height: 380px;
+    }
+
+    .css-dark {
+        padding: 20px;
+
+    }
+
+    .linkRepairs
+
+    /*LINK ON HOMEPAGE WITH IMAGES*/
+        {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+        padding: 0;
+    }
+}

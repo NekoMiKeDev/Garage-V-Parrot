@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification des horaires
+{% endblock %}
+
+{% block body %}
+	{% include "partials/_navigationAdmin.html.twig" %}
+	<div class="css-dark d-flex justify-content-center py-5">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+
+		{{ form_start(form, {'attr': {'class': 'd-flex flex-column p-3  h-100 col-12 col-xl-4 align-items-center b-gold rounded-4 text-center text-gold'}}) }}
+		<div class="h1-gold fw-bold">{{ days[urlId] }}</div>
+
+		<div class="mb-3 text-gold mt-4">
+			{{ form_label(form.openingHours) }}
+			<div>format attendu : 00:00</div>
+			{{ form_widget(form.openingHours) }}
+			{{ form_errors(form.openingHours) }}
+		</div>
+
+
+		<div class="mb-3 text-gold">
+			{{ form_label(form.closingHours) }}
+			<div>format attendu : 00:00</div>
+			{{ form_widget(form.closingHours) }}
+			{{ form_errors(form.closingHours) }}
+		</div>
+
+		<form action="{{ path('hours.index') }}" method="POST">
+		    <button type="submit" name="reset_hours" class="btn-gold">Réinitialiser les horaires</button>
+		</form>
+		
+		{{ form_end(form) }}
+	</div>
+{% endblock %}

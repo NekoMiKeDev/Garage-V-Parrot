@@ -1,0 +1,25 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+ajax_filter:
+    path: '/product/filter'
+    controller: 'App\Controller\ProductController::filter'
+    methods: ['POST']
+
+download_gallery:
+    path: '/download-gallery/{carId}'
+    controller: 'App\Controller\GalleryController::downloadGallery'
+
+pdf_upload:
+    path: '/pdf/upload'
+    controller: 'App\Controller\CarController::uploadPdf'
+    methods: ['POST']
+
+car_update:
+    path: '/car/update/{id}'
+    controller: 'App\Controller\CarController::edit'
+    methods: ['GET', 'POST']
+

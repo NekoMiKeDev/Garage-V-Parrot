@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage V.Parrot - Espace dédié: Admin
+{% endblock %}
+
+{% block body %}
+	{% include "partials/_navigationAdmin.html.twig" %}
+	<div class="css-dark pt-0 px-0 d-flex flex-column align-items-center">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+		<h1 class="h1-gold text-center py-4 mb-4">Tableau des comptes employés:</h1>
+
+		<div class="table-responsive col-md-9 col-12">
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr class="fs-4">
+						<th class="col-md-5 p-4 text-center">Email</th>
+						<th class="col-md-5 p-4 text-center">Gestion utilisateurs</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<td class="p-3 ms-5 text-left">{{ user.email }}</td>
+							<td class="text-center d-flex align-item-center justify-content-center">
+								<a href="{{ path('user.update', {'id': user.id}) }}" class="text-decoration-none btn btn-warning text-white fw-bold text-center w-50 py-2">Modifier</a>
+								<a href="#" class="text-decoration-none btn btn-danger fw-bold text-center w-50 py-2 mx-5" onclick="confirmDelete('{{ path('user.delete', {'id': user.id}) }}')">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<a href="{{ path('security.registration')}}" class="text-decoration-none btn btn-success fw-bold text-center col-6 col-md-3 py-2">Ajouter un employé</a>
+
+	</div>
+{% endblock %}

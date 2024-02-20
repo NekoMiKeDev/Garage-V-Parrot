@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage V.Parrot - Contact traitement
+{% endblock %}
+
+{% block body %}
+	{% if is_granted('ROLE_ADMIN') %}
+		{% include "partials/_navigationAdmin.html.twig" %}
+	{% elseif is_granted('ROLE_USER') %}
+		{% include "partials/_navigationEmployee.html.twig" %}
+	{% endif %}
+	<div class="css-dark d-flex flex-column align-items-center p-0">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+
+		<h1 class="h1-all text-center mt-5">Traitement des contacts</h1>
+		<p>Contacts à traités:</p>
+		<div class="mb-5">
+			<p>
+				<small>{{ contacts|length }}
+					demandent de contacts en attente.</small>
+			</p>
+		</div>
+
+		<i class="fa-solid fa-arrow-right pe-2 mb-1 text-gold">
+			<a href="{{ path('contact.old') }}" class="goldHover">Allez vers les contacts traités</a>
+		</i>
+
+		{% for contact in contacts %}
+			<div class="d-flex flex-column w-75 contactTraitement mb-3 rounded-2">
+				<div class="p-2">NOM:
+					{{ contact.lastname }}</div>
+				<div class="p-2">PRENOM:
+					{{ contact.firstname }}</div>
+				<div class="p-2">TELEPHONE:
+					<a href="tel:{{ contact.phoneNumber }}" class="fw-bold goldHover">{{ contact.phoneNumber }}</a>
+				</div>
+				<div class="p-2 mb-5">EMAIL:
+					<a href="mailto:{{ contact.email }}?subject=Bonjour Madame, Monsieur {{contact.lastname}}" class="fw-bold goldHover">{{ contact.email }}</a>
+				</div>
+				<div class="p-2">OBJET:
+					{{ contact.objet }}</div>
+				<div class="p-2 textSize bt-gold">{{ contact.text }}</div>
+
+				<form method="post" action="{{ path('contact.validate', {'id': contact.id}) }}" class="d-flex justify-content-center w-100 mt-3">
+					<button type="submit" class="text-decoration-none bg-success fw-bold text-center text-white rounded-2 p-1 m-1 w-50" name="valider_contact">Validé</button>
+				</form>
+				<div class="d-flex justify-content-center w-100">
+					<a href="#" class="text-decoration-none bg-danger fw-bold text-center text-white rounded-2 p-1 m-1 w-50" onclick="confirmDelete('{{ path('contact.delete', {'id': contact.id}) }}')">Supprimer</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

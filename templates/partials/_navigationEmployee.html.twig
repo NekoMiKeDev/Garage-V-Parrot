@@ -1,0 +1,24 @@
+<nav class="d-flex flex-column align-items-center bg-dark col-12 bb-gold">
+	<h1 class=" text-center h1-gold py-2 bb-g">Espace employés</h1>
+	<div class="d-none d-md-flex justify-content-around col-12 text-center">
+		<a href="{{ path('moderation.car') }}" class="col-4 goldHover h-100 py-3 fs-4">Occasions</a>
+		<a href="{{ path('comment.index') }}" class="col-4 goldHover h-100 py-3 fs-4">Espace commentaires</a>
+		<a href="{{ path('contact.index') }}" class="col-4 goldHover h-100 py-3 fs-4">Contact</a>
+	</div>
+	<div class="dropdown d-md-none d-flex ps-3">
+		<button class="dropdown-toggle rounded-2 p-2 fw-normal fs-6" type="button" id="userMenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+			<i class="fas fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu bg-secondary" aria-labelledby="userMenu">
+			<li>
+				<a href="{{ path('moderation.car') }}" class="dropdown-item text-white fs-5 bb-gold">Occasions</a>
+			</li>
+			<li>
+				<a href="{{ path('comment.index') }}" class="dropdown-item text-white fs-5 bb-gold">Commentaires</a>
+			</li>
+			<li>
+				<a href="{{ path('contact.index') }}" class="dropdown-item text-white fs-5 bb-gold">Contact</a>
+			</li>
+		</ul>
+	</div>
+</nav>

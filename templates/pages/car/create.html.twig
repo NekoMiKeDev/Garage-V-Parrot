@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage V.Parrot - Création de voitures d'occasions
+{% endblock %}
+
+{% block body %}
+	{% if is_granted('ROLE_ADMIN') %}
+		{% include "partials/_navigationAdmin.html.twig" %}
+	{% elseif is_granted('ROLE_USER') %}
+		{% include "partials/_navigationEmployee.html.twig" %}
+	{% endif %}
+	<div class="css-dark p-0 d-flex flex-column align-items-center">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+		<h1 class="mb-5 p-4 text-gold text-center">Création de voiture d'occasions</h1>
+		<div class="col-md-6 col-sm-10 b-gold p-4 rounded-2">
+			{{ form_start(form) }}
+
+			<div class="mb-3">
+				<label for="{{ form.model.vars.id }}">Modèle</label>
+				{{ form_widget(form.model) }}
+			</div>
+
+			<div class="mb-3">
+				<label for="{{ form.description.vars.id }}">Description</label>
+				{{ form_widget(form.description) }}
+			</div>
+
+			<div class="mb-3">
+				<label for="{{ form.dateOfManufacture.vars.id }}">Date de mise en circulation</label>
+				{{ form_widget(form.dateOfManufacture) }}
+			</div>
+
+			<div class="mb-3">
+				<label for="{{ form.mileage.vars.id }}">Kilométrage</label>
+				{{ form_widget(form.mileage) }}
+			</div>
+
+			<div class="mb-3">
+				<label for="{{ form.price.vars.id }}">Prix</label>
+				{{ form_widget(form.price) }}
+			</div>
+
+			<div class="b-3 w-100 d-flex flex-column align-items-center justify-content-center bb-gold p-2 pb-4 m-2">
+				<div class="fs-5">{{ form_label(form.inputFile) }}</div>
+				{{ form_widget(form.inputFile) }}
+			</div>
+
+			<div class="mb-3 w-100 d-flex flex-column align-items-center justify-content-center bb-gold p-2 pb-4 m-2">
+				<div class="fs-5">{{ form_label(form.pdfFile) }}</div>
+
+				{{ form_widget(form.pdfFile) }}
+
+			</div>
+
+			<div class="mt-3 w-100 d-flex justify-content-center">
+				{{ form_row(form.submit) }}
+			</div>
+			{{ form_end(form) }}
+		</div>
+	</div>
+{% endblock %}

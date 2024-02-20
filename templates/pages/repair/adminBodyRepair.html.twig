@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage V.Parrot - Espace Admin: Réparations de carrosserie
+{% endblock %}
+
+{% block body %}
+	{% include "partials/_navigationAdmin.html.twig" %}
+	<div class="css-dark d-flex flex-column align-items-center">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+
+		<h1 class="h1-gold text-center py-4 mb-4">Tableau des réparation de carrosserie</h1>
+		<div class="d-flex col-md-12 col-12 justify-content-around mb-4 fs-5 text-center">
+			<i class="fa-solid fa-arrow-right pe-2 mb-1 text-gold w-100 text-center">
+				<a href="{{ path('admin.repair') }}" class="goldHover">Toutes les reparations</a>
+			</i>
+			<i class="fa-solid fa-arrow-right pe-2 mb-1 text-gold w-100 text-center">
+				<a href="{{ path('admin.mechanical') }}" class="goldHover">Reparations mecaniques</a>
+			</i>
+		</div>
+
+		<div class="table-responsive col-10">
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr class="fs-5">
+						<th class="p-4 text-center col-2 align-middle">Titre</th>
+						<th class="p-4 text-center col-7 align-middle">Description</th>
+						<th class="p-4 text-center col-3 align-middle">Gestion réparations</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for body in bodys %}
+						<tr>
+							<td class="min-h align-middle ms-5 text-center">{{ body.title }}</td>
+							<td class="min-h align-middle ps-2 text-center">{{ body.repairDescription }}</td>
+							<td class="min-h text-center d-flex flex-column align-item-center justify-content-center h-100 ">
+								<a href="{{ path('repair.update', {'id': body.id}) }}" class="text-decoration-none  bg-warning fw-bold text-center text-dark w-100 h-100 py-2 turbo-frame">Modifier</a>
+								<a href="#" class="text-decoration-none bg-danger fw-bold text-center text-dark w-100 h-100 py-2 turbo-frame" onclick="confirmDelete('{{ path('repair.delete', {'id': body.id}) }}')">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<a href="{{ path('repair.create') }}" class="text-decoration-none btn btn-gold fw-bold text-center text-gold col-md-3 col-4 h-100 py-2 turbo-frame pt-2">Ajouter</a>
+	</div>
+{% endblock %}

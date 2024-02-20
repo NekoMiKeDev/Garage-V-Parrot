@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage V.Parrot - Contact traitement : contact traité
+{% endblock %}
+
+{% block body %}
+	{% if is_granted('ROLE_ADMIN') %}
+		{% include "partials/_navigationAdmin.html.twig" %}
+	{% elseif is_granted('ROLE_USER') %}
+		{% include "partials/_navigationEmployee.html.twig" %}
+	{% endif %}
+	<div class="css-dark d-flex flex-column align-items-center p-0">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+
+		<h1 class="h1-all text-center mt-5">Traitement des contacts</h1>
+		<p>Contacts traités:</p>
+		<div class="mb-5">
+			<p>
+				<small>{{ oldContacts|length }}demandent de contacts traité.</small>
+			</p>
+		</div>
+		<i class="fa-solid fa-arrow-right pe-2 mb-1 text-gold">
+			<a href="{{ path('contact.index') }}" class="goldHover">Allez vers les contacts en attentes</a>
+		</i>
+		{% for oldContact in oldContacts %}
+			<div class="d-flex flex-column w-75 contactTraitement mb-3 rounded-2">
+				<div class="p-2">NOM:
+					{{ oldContact.lastname }}</div>
+				<div class="p-2">PRENOM:
+					{{ oldContact.firstname }}</div>
+				<div class="p-2">TELEPHONE:
+					<a href="tel:{{ oldContact.phoneNumber }}" class="fw-bold goldHover">{{ oldContact.phoneNumber }}</a>
+				</div>
+				<div class="p-2 mb-5">EMAIL:
+					<a href="mailto:{{ oldContact.email }}?subject= Bonjour Madame, Monsieur {{oldContact.lastname}}" class="fw-bold goldHover">{{ oldContact.email }}</a>
+				</div>
+				<div class="p-2">OBJET:
+					{{ oldContact.objet }}</div>
+				<div class="p-2 textSize bt-gold bb-gold">
+					{{ oldContact.text }}</div>
+
+				<form method="post" action="{{ path('contact.validate', {'id': oldContact.id}) }}" class="d-flex justify-content-center w-100 mt-3">
+					<button type="submit" class="text-decoration-none bg-success fw-bold text-center text-white rounded-2 p-1 m-1 w-50" name="valider_contact">Annulé la validation</button>
+				</form>
+				<div class="d-flex justify-content-center w-100">
+					<a href="#" class="text-decoration-none bg-danger fw-bold text-center text-white rounded-2 p-1 m-1 w-50 " onclick="confirmDelete('{{ path('contact.delete', {'id': oldContact.id}) }}')">Supprimer</a>
+				</div>
+			</div>
+
+
+		{% endfor %}
+	</div>
+{% endblock %}

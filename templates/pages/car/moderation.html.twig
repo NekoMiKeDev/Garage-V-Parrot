@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage V.Parrot - Espace dédié: Voitures d'occasions
+{% endblock %}
+
+{% block body %}
+	{% if is_granted('ROLE_ADMIN') %}
+		{% include "partials/_navigationAdmin.html.twig" %}
+	{% elseif is_granted('ROLE_USER') %}
+		{% include "partials/_navigationEmployee.html.twig" %}
+	{% endif %}
+
+	<div class="css-dark d-flex flex-column align-items-center">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+		<h1 class="h1-gold text-center py-4 mb-3">Tableau des voitures d'occasion</h1>
+
+		<div class="table-responsive">
+			<table class="table table-striped" style="min-width: 850px;">
+				<thead class="table-dark">
+					<tr class=>
+						<th scope="col-1" class="align-middle">Modèle</th>
+						<th scope="col-6" class="align-middle">Description</th>
+						<th scope="col-1" class="align-middle">Date de mise en circulation</th>
+						<th scope="col-1" class="align-middle">Kilométrage</th>
+						<th scope="col-1" class="align-middle">Prix</th>
+						<th scope="col-2" class="align-middle">Gestion des voitures</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for car in cars %}
+						<tr>
+							<td class="align-middle">{{ car.model }}</td>
+							<td class="align-middle">{{ car.description }}</td>
+							<td class="align-middle">{{ car.yearOfManufacture | date("m/d/Y") }}</td>
+							<td class="align-middle">{{ car.Mileage }}</td>
+							<td class="align-middle">{{ car.price }}</td>
+							<td class="d-flex flex-column w-100 h-100 justify-content-center">
+								<a href="{{ path('car.update', {'id': car.id}) }}" class="btn btn-warning h-100 text-white m-2">Modifier</a>
+								<a href="#" class="btn btn-danger h-100 m-2" onclick="confirmDelete('{{ path('car.delete', {'id': car.id}) }}')">Supprimer</a>
+								<a href="{{ path('car.gallery', {'id': car.id}) }}" class="btn btn-primary h-100 m-2">Gallerie</a>
+							{% if car.pdfStorages|length > 0 %}
+							    <a href="{{ asset('uploads/pdfs/' ~ car.pdfStorages[0].fileName) }}" target="_blank" class="btn btn-info h-100 text-white m-2">
+							        Tableau des caractéristiques
+							    </a><br>
+							{% endif %}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+
+		<div class="d-flex justify-content-center mt-3">
+			{{ knp_pagination_render(cars) }}
+		</div>
+
+		<a href="{{ path('car.create') }}" class="btn-gold text-gold h-100 w-50">Ajouter une voiture</a>
+	</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage V.Parrot - Galerie de photo
+{% endblock %}
+
+{% block body %}
+	{% if is_granted('ROLE_ADMIN') %}
+		{% include "partials/_navigationAdmin.html.twig" %}
+	{% elseif is_granted('ROLE_USER') %}
+		{% include "partials/_navigationEmployee.html.twig" %}
+	{% endif %}
+	<div class="css-dark p-5 -center text-center">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+
+		<h1 class="h1-gold mb-5">{{ car.model }}</h1>
+		<div class="w-100 bb-gold bt-gold pt-3">
+			{% for image in gallery %}
+				<div class="col-md-12 mb-4 d-flex flex-column align-items-center justify-content-center text-center">
+					<img src="{{ vich_uploader_asset(image, 'imageFile') }}" style="width:100%; max-width:800px; border-radius: 15px" class="homeRepairImgs"/>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="text-center mt-4">
+			{% if car.pdfStorages|length > 0 %}
+				<a href="{{ asset('uploads/pdfs/' ~ car.pdfStorages[0].fileName) }}" class="btn-gold" download="tableau_caracteristique.pdf">Télécharger le tableau caractéristique du véhicule</a>
+			{% else %}
+				<p>Aucun tableau caractéristique disponible</p>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

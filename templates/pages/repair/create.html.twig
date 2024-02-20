@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage V.Parrot - Ajouter une réparation
+{% endblock %}
+
+{% block body %}
+	{% include "partials/_navigationAdmin.html.twig" %}
+	<div class="css-dark d-flex flex-column align-items-center">
+
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+
+
+		{{ form_start(form, {'attr': {'class': 'd-flex flex-column p-3 h-100 col-12 col-xl-4 align-items-center b-gold rounded-4 text-center text-gold'}}) }}
+		<h1 class="h1-gold mb-3 w-100 pb-3 bb-gold">Ajouter une réparation</h1>
+
+
+		<div class="mb-3 mt-4 w-100 fs-4">
+			{{ form_row(form.title) }}
+		</div>
+		<div class="mb-3 mt-4 w-100 fs-4">
+			{{ form_row(form.repairDescription) }}
+		</div>
+		<div class="mb-3 mt-4 w-100 fs-4">
+			{{ form_row(form.repairType) }}
+		</div>
+
+		<div class="text-center mb-2">
+			{{ form_row(form.submit) }}
+		</div>
+
+		<div class=" w-100 fs-4">
+			{{ form_errors(form) }}
+		</div>
+		{{ form_end(form) }}
+
+	</div>
+{% endblock %}

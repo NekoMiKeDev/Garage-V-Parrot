@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage Parrot-Connexion
+{% endblock %}
+
+{% block body %}
+	<div class="d-flex flex-column justify-content-center align-items-center css-dark py-5">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+		<form class="d-flex flex-column justify-content-between align-items-center col-11 col-md-8 col-lg-6 p-3 mb-5 rounded-3 css-gold bg-dark" method="post" action="{{ path('security.login')}}">
+			<h2 class="text-center fs-2 fw-bold mb-4">Connexion</h2>
+			{% if error %}
+				<div class="d-flex flex-column w-75 h-25 alert alert-danger">
+					{{ error.messageKey|trans(error.messageData, 'security')}}
+				</div>
+			{% endif %}
+			<div class="d-flex flex-column w-75">
+				<label class="fs-5" for="email">Entrez votre adresse email</label>
+				<input class="text-center w-100 border border-primary mb-4 fs-3" type="email" id="username" name="_username" value="{{ last_username }}" placeholder="adresse.email@srf.fr" required>
+				<label class="fs-5" for="password">Entrez votre mot de passe</label>
+				<input class="text-center w-100 border border-primary mb-4 fs-3" type="password" id="password" name="_password" placeholder="**********" required>
+			</div>
+			<input class="css-gold col-4 rounded-2 fs-4" type="submit" value="Se connecter"/>
+		</form>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage V.Parrot - Espace Admin: Réparations
+{% endblock %}
+
+{% block body %}
+	{% include "partials/_navigationAdmin.html.twig" %}
+	<div class="css-dark d-flex flex-column align-items-center">
+		<button class="btn-back" onclick="goBack()">
+			<i class="fa-solid fa-arrow-left"></i>
+		</button>
+		<h1 class="h1-gold text-center py-4 mb-4">Tableau des réparation tous types</h1>
+		<div class="d-flex w-75 justify-content-around mb-4 fs-5 text-center">
+			<i class="fa-solid fa-arrow-right pe-2 mb-1 text-gold w-100 text-center">
+				<a href="{{ path('admin.body') }}" class="goldHover">Reparations de carrosserie</a>
+			</i>
+			<i class="fa-solid fa-arrow-right pe-2 mb-1 text-gold w-100 text-center">
+				<a href="{{ path('admin.mechanical') }}" class="goldHover">Reparations mecaniques</a>
+			</i>
+		</div>
+
+		<div class="table-responsive col-12">
+			<table class="table table-striped">
+				<thead class="table-dark">
+					<tr class="fs-5">
+						<th class="p-4 text-center col-1 align-middle">Titre</th>
+						<th class="p-4 text-center col-4 align-middle">Description</th>
+						<th class="p-4 text-center col-3 align-middle">Type de réparations</th>
+						<th class="p-4 text-center col-1 align-middle">Gestion réparations</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for repair in repairs %}
+						<tr>
+							<td class="min-h align-middle ms-5 text-center">{{ repair.title }}</td>
+							<td class="min-h align-middle ps-2 text-center">{{ repair.repairDescription }}</td>
+							<td class="min-h align-middle ms-5 text-center">{{ repair.repairType }}</td>
+							<td class="min-h text-center d-flex flex-column align-item-center justify-content-center h-100  turbo-frame">
+								<a href="{{ path('repair.update', {'id': repair.id}) }}" class="text-decoration-none  bg-warning fw-bold text-center text-dark w-100 h-100 py-2 turbo-frame">Modifier</a>
+								<a href="#" class="text-decoration-none bg-danger fw-bold text-center text-dark w-100 h-100 py-2" onclick="confirmDelete('{{ path('repair.delete', {'id': repair.id}) }}')">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<a href="{{ path('repair.create') }}" class="text-decoration-none btn btn-gold fw-bold text-center text-gold col-md-3 col-4 h-100 py-2 turbo-frame pt-2">Ajouter</a>
+	</div>
+{% endblock %}
